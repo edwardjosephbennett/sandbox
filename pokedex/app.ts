@@ -1,4 +1,1 @@
-import "./src/ts/test";
-
-let foo: string = "test";
-foo = "boom";
+let appContainer: HTMLElement | any = document.querySelector('#app');

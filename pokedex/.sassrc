@@ -1,0 +1,6 @@
+{
+    "includePaths": [
+        "node_modules/normalize.css",
+        "node_modules/bulma"
+    ]
+}
