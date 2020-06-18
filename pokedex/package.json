@@ -4,7 +4,8 @@
   "description": "A typescript test to build a pokedex",
   "main": "index.html",
   "dependencies": {
-    "@types/parcel-env": "0.0.0"
+    "@types/parcel-env": "0.0.0",
+    "parcel-plugin-typescript": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
