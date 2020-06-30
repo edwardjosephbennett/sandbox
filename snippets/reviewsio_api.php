@@ -28,7 +28,7 @@ class ReviewsIO
 	 * @var [type]
 	 */
 	public $rioAPIKey = null;
-
+	
 	public $helpers = '';
 	
 	public function __construct($apiKey = '')
