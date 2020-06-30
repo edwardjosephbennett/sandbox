@@ -104,7 +104,7 @@ class ReviewsIO
 	public function rioAPIUrl($type = 'latest')
 	{
 		$url = null;
-		
+
 		switch($type) :
 			default: 
 				$url = $this->rioApiBaseUrl . 'merchant/latest' . '?store=' . $this->rioStoreID;
@@ -122,30 +122,46 @@ class ReviewsIO
 
 	public function getReviews()
 	{
-		$cacheFileLocal = get_stylesheet_directory() . '/reviews/reviews.json';
-		$cacheFile = get_stylesheet_directory_uri() . '/reviews/reviews.json';
 		$expires = strtotime('+1 day');
-		$results = $this->fetchReviewsFromAPI();
+		$results = $this->fetchReviewsFromAPI('latest');
 
-		if ( file_exists($cacheFileLocal) === false) {
-			if($results) {
-				if(mkdir(get_stylesheet_directory().'/reviews', 0755) && file_exists(get_stylesheet_directory().'/reviews') === false) {
-					mkdir(get_stylesheet_directory().'/reviews', 0755);
+		if($results) {
+			if($this->isWordpressActive()) {
+				// A local path such as /home/user/user1/public_html
+				$cacheFileLocal = get_stylesheet_directory() . '/reviews/reviews.json';
+				// An absolute path with protocol such as https://domain.com/
+				$cacheFile = get_stylesheet_directory_uri() . '/reviews/reviews.json';
+
+				if ( file_exists($cacheFileLocal) === false) {
+					
+					if(
+						mkdir(get_stylesheet_directory().'/reviews', 0755) && 
+						file_exists(get_stylesheet_directory().'/reviews') === false
+					) {
+						mkdir(get_stylesheet_directory().'/reviews', 0755);
+					}
+					
+					$f = fopen($cacheFileLocal, 'w') or die ('File not available');
+
+					fwrite($f, $results);
+					fclose($f);
+				
+					return $this->getFile($cacheFile);
 				}
-				$f = fopen($cacheFileLocal, 'w') or die ('File not available');
-				fwrite($f, $results);
-				fclose($f);
-				return $this->getFile($cacheFile);
+			} else {
+	
 			}
-		} 
 
-		if( filemtime($cacheFileLocal) < $expires && ($this->getFile($cacheFile) !== 3 || $this->getFile($cacheFile) != '')) {
-			if($results) {
-				$f = fopen($cacheFileLocal, 'w') or die ('File not available');
-				fwrite($f, $results);
-				fclose($f);
-				return $this->getFile($cacheFile);
-			}
+		}
+
+		if( 
+			filemtime($cacheFileLocal) < $expires && 
+			($this->getFile($cacheFile) !== 3 || $this->getFile($cacheFile) != '')
+		) {
+			$f = fopen($cacheFileLocal, 'w') or die ('File not available');
+			fwrite($f, $results);
+			fclose($f);
+			return $this->getFile($cacheFile);
 		} 
 
 		return $this->getFile($cacheFile);
@@ -156,8 +172,8 @@ class ReviewsIO
 	 *
 	 * @return void
 	 */
-	public function fetchReviewsFromAPI()
+	public function fetchReviewsFromAPI($type = 'latest')
 	{
-		return $this->getFile($this->rioAPIUrl('latest'));
+		return $this->getFile($this->rioAPIUrl($type));
 	}
 }
