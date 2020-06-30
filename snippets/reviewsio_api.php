@@ -43,6 +43,17 @@ class ReviewsIO
 	}
 
 	/**
+	 * isWordpressActive
+	 * Check to see if wordpress constant ABSPATH is defined and return true/false
+	 *
+	 * @return boolean
+	 */
+	public function isWordpressActive()
+	{
+		return defined('ABSPATH') ? true : false;
+	}
+
+	/**
 	 * Fetch a file using cURL.
 	 *
 	 * @param string $path
