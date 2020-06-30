@@ -27,7 +27,7 @@ class ReviewsIO
 	 *
 	 * @var string
 	 */
-	public $rioAPIUrl = "https://api.reviews.co.uk/";
+	public $rioApiBaseUrl = "https://api.reviews.co.uk/";
 
 	/**
 	 * API Key for the account to access. Required if posting to their
@@ -104,15 +104,16 @@ class ReviewsIO
 	public function rioAPIUrl($type = 'latest')
 	{
 		$url = null;
+		
 		switch($type) :
 			default: 
-				$url = $this->rioAPIUrl . 'merchant/latest' . '?store=' . $this->rioStoreID;
+				$url = $this->rioApiBaseUrl . 'merchant/latest' . '?store=' . $this->rioStoreID;
 				break;
 			case 'latest':
-				$url = $this->rioAPIUrl . 'merchant/latest' . '?store=' . $this->rioStoreID;
+				$url = $this->rioApiBaseUrl . 'merchant/latest' . '?store=' . $this->rioStoreID;
 				break;
 			case 'short':
-				$url = $this->rioAPIUrl . 'merchant/reviews' . '?apikey='. $this->rioAPIKey . '&store=' . $this->rioStoreID;
+				$url = $this->rioApiBaseUrl . 'merchant/reviews' . '?apikey='. $this->rioAPIKey . '&store=' . $this->rioStoreID;
 				break;
 		endswitch;
 
