@@ -1,8 +1,16 @@
 <?php
 /**
- * ReviewsIO
+ * ReviewsIO API Script
  * A PHP class to pull reviews down from reviews.co.uk into a json file in the theme folder
- * Written by Ed Bennett
+ * @author Ed Bennett
+ * @version 1.0.0
+ * 
+ * Supports
+ * - Supports Wordpress themes
+ * - Supports local usage
+ * 
+ * Requirements
+ * - Must have write access to a directory to pull data down into a folder
  */ 
 class ReviewsIO
 {
@@ -28,8 +36,6 @@ class ReviewsIO
 	 * @var [type]
 	 */
 	public $rioAPIKey = null;
-	
-	public $helpers = '';
 	
 	public function __construct($apiKey = '')
 	{	
@@ -66,7 +72,6 @@ class ReviewsIO
             );
         }
 	}
-
 
 	/**
 	 * Set the store ID to fetch from the API
