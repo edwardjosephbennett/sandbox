@@ -1,5 +1,4 @@
 import fs from "fs-extra";
-import config from "./config";
 
 // 1 week in seconds
 let cacheTime:number = 604800;

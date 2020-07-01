@@ -1,6 +1,3 @@
-import getPokemon from "./src/ts/getPokemon";
-import './src/ts/cache';
+import "./src/app"
 
 let appContainer: HTMLElement | any = document.querySelector('#app');
-
-getPokemon();

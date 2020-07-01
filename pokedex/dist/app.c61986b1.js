@@ -117,19 +117,31 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/ts/getPokemon.ts":[function(require,module,exports) {
+})({"src/app/core/config.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var config = {
+  cache: {
+    time: 604800
+  },
+  pokeapi: {
+    all: "",
+    single: ""
+  }
+};
+exports.default = config;
+},{}],"src/app/core/index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var getPokemon = function getPokemon() {
-  console.log('Boo');
-};
-
-exports.default = getPokemon;
-},{}],"node_modules/universalify/index.js":[function(require,module,exports) {
+require("./config");
+},{"./config":"src/app/core/config.ts"}],"node_modules/universalify/index.js":[function(require,module,exports) {
 'use strict';
 
 exports.fromCallback = function (fn) {
@@ -11374,7 +11386,7 @@ if (Object.getOwnPropertyDescriptor(fs, 'promises')) {
     }
   });
 }
-},{"./fs":"node_modules/fs-extra/lib/fs/index.js","./copy-sync":"node_modules/fs-extra/lib/copy-sync/index.js","./copy":"node_modules/fs-extra/lib/copy/index.js","./empty":"node_modules/fs-extra/lib/empty/index.js","./ensure":"node_modules/fs-extra/lib/ensure/index.js","./json":"node_modules/fs-extra/lib/json/index.js","./mkdirs":"node_modules/fs-extra/lib/mkdirs/index.js","./move-sync":"node_modules/fs-extra/lib/move-sync/index.js","./move":"node_modules/fs-extra/lib/move/index.js","./output":"node_modules/fs-extra/lib/output/index.js","./path-exists":"node_modules/fs-extra/lib/path-exists/index.js","./remove":"node_modules/fs-extra/lib/remove/index.js","fs":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/_empty.js"}],"src/ts/cache.ts":[function(require,module,exports) {
+},{"./fs":"node_modules/fs-extra/lib/fs/index.js","./copy-sync":"node_modules/fs-extra/lib/copy-sync/index.js","./copy":"node_modules/fs-extra/lib/copy/index.js","./empty":"node_modules/fs-extra/lib/empty/index.js","./ensure":"node_modules/fs-extra/lib/ensure/index.js","./json":"node_modules/fs-extra/lib/json/index.js","./mkdirs":"node_modules/fs-extra/lib/mkdirs/index.js","./move-sync":"node_modules/fs-extra/lib/move-sync/index.js","./move":"node_modules/fs-extra/lib/move/index.js","./output":"node_modules/fs-extra/lib/output/index.js","./path-exists":"node_modules/fs-extra/lib/path-exists/index.js","./remove":"node_modules/fs-extra/lib/remove/index.js","fs":"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/_empty.js"}],"src/app/cache/cache.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -11395,26 +11407,57 @@ var cacheTime = 604800;
 if (!fs_extra_1.default.pathExists('../cache')) {
   console.log('path doesn\'t exist');
 }
-},{"fs-extra":"node_modules/fs-extra/lib/index.js"}],"app.ts":[function(require,module,exports) {
+},{"fs-extra":"node_modules/fs-extra/lib/index.js"}],"src/app/cache/index.ts":[function(require,module,exports) {
 "use strict";
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var getPokemon_1 = __importDefault(require("./src/ts/getPokemon"));
+require("./cache");
+},{"./cache":"src/app/cache/cache.ts"}],"src/app/pokemon/getPokemon.ts":[function(require,module,exports) {
+"use strict";
 
-require("./src/ts/cache");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var getPokemon = function getPokemon() {
+  console.log('Boo');
+};
+
+exports.default = getPokemon;
+},{}],"src/app/pokemon/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("./getPokemon");
+},{"./getPokemon":"src/app/pokemon/getPokemon.ts"}],"src/app/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("./core");
+
+require("./cache");
+
+require("./pokemon");
+},{"./core":"src/app/core/index.ts","./cache":"src/app/cache/index.ts","./pokemon":"src/app/pokemon/index.ts"}],"app.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("./src/app");
 
 var appContainer = document.querySelector('#app');
-getPokemon_1.default();
-},{"./src/ts/getPokemon":"src/ts/getPokemon.ts","./src/ts/cache":"src/ts/cache.ts"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./src/app":"src/app/index.ts"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -11442,7 +11485,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63507" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52466" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
