@@ -3,7 +3,7 @@ export let config:object = {
 		time: 604800
 	},
     pokeapi: {
-        all: "",
+        all: "https://pokeapi.co/api/v2/pokemon",
         single: ""
     }
 }
