@@ -1,10 +1,13 @@
 import Axios from "axios";
 
 export let getPokemon = (url:string = '') => {
-	// console.log('Boo');
-	// Axios
-	// 	.get('https://pokeapi.co/api/v2/pokemon')
-	// 	.then((result) => {
-	// 		console.log(result);
-	// 	})
+	Axios
+		.get(url)
+		.then((result) => {
+			if(result.status === 200) {
+				console.log(result);
+				return result;
+			}
+			return false;
+		})
 }
