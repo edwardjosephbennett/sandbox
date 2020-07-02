@@ -1,4 +1,4 @@
-let config:object = {
+export let config:object = {
 	cache: {
 		time: 604800
 	},
@@ -7,5 +7,3 @@ let config:object = {
         single: ""
     }
 }
-
-export default config;

@@ -1,5 +1,10 @@
-let getPokemon = () => {
-    console.log('Boo');
-}
+import Axios from "axios";
 
-export default getPokemon;
+export let getPokemon = (url:string = '') => {
+	// console.log('Boo');
+	// Axios
+	// 	.get('https://pokeapi.co/api/v2/pokemon')
+	// 	.then((result) => {
+	// 		console.log(result);
+	// 	})
+}

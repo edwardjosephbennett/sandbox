@@ -1,1 +1,1 @@
-import "./getPokemon";
+export * from "./getPokemon";
