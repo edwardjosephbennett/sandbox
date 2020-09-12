@@ -1,1 +1,1 @@
-import "./cache"
+export * from "./cache"

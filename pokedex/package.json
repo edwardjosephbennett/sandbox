@@ -8,11 +8,15 @@
     "@types/parcel-env": "0.0.0",
     "axios": "^0.19.2",
     "fs-extra": "^9.0.1",
-    "parcel-bundler": "^1.12.4",
+    "localforage": "^1.9.0",
     "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
+    "@babel/polyfill": "^7.11.5",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-svelte": "^4.0.6",
     "sass": "^1.26.9",
+    "svelte": "^3.25.0",
     "typescript": "^3.9.5"
   },
   "scripts": {
